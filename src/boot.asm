@@ -8,15 +8,15 @@ dataStart:
         dd 0
         dd 0
 
-        db 0xFFFF
-        DB 0x0000
+        dW 0xFFFF
+        DW 0x0000
         DB 0x00
         DB 10011010b
         DB 11001111b
         DB 0x00
         
-        db 0xFFFF
-        DB 0x0000
+        dW 0xFFFF
+        DW 0x0000
         DB 0x00
         DB 10010010b
         DB 11001111b
