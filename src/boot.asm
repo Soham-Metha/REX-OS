@@ -1,7 +1,7 @@
 [ORG 0x7C00]
 section .data
-    bootable: DW 0xAA55
     hlo: db "Test?",0
+    bootable: DW 0xAA55
 
 section .text
 
