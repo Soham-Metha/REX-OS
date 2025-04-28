@@ -1,4 +1,7 @@
 [ORG 0x7C00]
+section .data
+    hlo: db "Test?",0
+    bootable: DW 0xAA55
 
 section .text
 
@@ -25,7 +28,4 @@ exit:
     CLI
     HLT
 
-hlo: db "Test?",0
-
-    TIMES 510-($-$$) DW 0x00
-    DW 0xAA55
+    TIMES 510-($-$$) DW 0
