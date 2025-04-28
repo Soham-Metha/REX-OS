@@ -28,4 +28,4 @@ exit:
     CLI
     HLT
 
-    TIMES 510-($$-$) DB 0
+    TIMES 510-($-$$) DB 0
