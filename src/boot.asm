@@ -1,10 +1,10 @@
+[ORG 0x7C00]
 section .data
     hlo: db "Test?",0
 
 section .text
 
 _start:
-    MOV CS, 0x07C0
     CLI
     MOV AX, CS
     MOV DS, AX
