@@ -27,3 +27,5 @@ printstr:
 exit:
     CLI
     HLT
+
+    TIMES 510-($-$$) DW 0x00
