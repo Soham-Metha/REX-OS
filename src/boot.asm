@@ -1,7 +1,7 @@
 section .data
     hlo: db "Test?",0
 
-section .code
+section .text
 
 _start:
     MOV CS, 0x00
