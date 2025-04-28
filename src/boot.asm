@@ -1,6 +1,9 @@
 [ORG 0x7C00]
+
 section .data
+
     hlo: DB "Test?",0
+
     bootable: DW 0xAA55
     datalen: EQU $-hlo
 
@@ -29,4 +32,4 @@ exit:
     CLI
     HLT
 
-    TIMES 510-($-$$)-datalen DB 0
+    TIMES (510-($-$$)-datalen) DB 0
