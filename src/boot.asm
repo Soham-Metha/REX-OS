@@ -23,5 +23,8 @@ exit:
     CLI
     HLT
 
+
+hlo: db "Test?",0
+
     TIMES 510-($$-$) DB 0
     DW 0xAA55
