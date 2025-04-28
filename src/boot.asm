@@ -3,14 +3,10 @@ section .data
 
 section .code
 
-.global _start
-
 _start:
-    LJMP 0x07C0, $main
-
-main:
+    MOV CS, 0x00
     CLI
-    MOV AX, CS      ; On Startup, CS is 0xF000, IP is 0xFFF0
+    MOV AX, CS
     MOV DS, AX
     MOV ES, AX
     MOV SS, AX
