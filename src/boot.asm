@@ -1,7 +1,5 @@
 [ORG 0x7C00]
 
-hlo: db "Test?",0
-
 _start:
     CLI
     MOV AX, CS
