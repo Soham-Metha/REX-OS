@@ -4,7 +4,7 @@ section .data
 section .text
 
 _start:
-    MOV CS, 0x00
+    MOV CS, 0x07C0
     CLI
     MOV AX, CS
     MOV DS, AX
