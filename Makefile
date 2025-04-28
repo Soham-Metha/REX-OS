@@ -1,7 +1,7 @@
 
 
 boot:
-	@nasm -f bin ./src/boot.asm -o ./bin/boot.bin
+	@nasm -f bin ./src/boot.asm -o ./bin/boot.bin &&
 	@echo " BOOT FILE UPDATED "
 
 chkboot:
