@@ -9,7 +9,8 @@ chkboot:
 	@bless ./bin/boot.bin
 
 execboot:
-	@make boot
+	@make boot &&
+	@qemu-system-x86_64 -hda ./bin/boot.bin
 
 clean:
-	rm -f ./bin/boot.bin
+	@rm -f ./bin/boot.bin
