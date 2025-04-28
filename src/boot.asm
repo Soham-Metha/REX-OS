@@ -1,5 +1,7 @@
 [ORG 0x7C00]
 
+hlo: db "Test?",0
+
 _start:
     CLI
     MOV AX, CS
@@ -23,8 +25,5 @@ exit:
     CLI
     HLT
 
-
-hlo: db "Test?",0
-
-    TIMES 510-($$-$) DB 0
+    TIMES 510-($-$$) DB 0
     DW 0xAA55
