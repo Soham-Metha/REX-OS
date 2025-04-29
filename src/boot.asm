@@ -38,9 +38,10 @@ dataStart:
 section .text
 
 startRealMode:
-    MOV AL, 8   ; SECTORS TO READ?
+    MOV AL, 90   ; SECTORS TO READ?
     MOV CH, 0   ; C
     MOV DH, 0   ; H
+    MOV DL, 80
     MOV CL, 2   ; S
     MOV BX, KERNEL_BASE
     MOV AH, 2
