@@ -88,4 +88,4 @@ startProtectedMode:
     JMP CODE_OFFSET:KERNEL_START
 
 exit:
-TIMES (510-($-$$)-datalen) DB 0
+TIMES (509-($-$$)-datalen) DB 0
