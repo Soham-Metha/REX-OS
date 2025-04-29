@@ -33,8 +33,8 @@ dataStart:
     ;KERNEL_START equ     ; expected position of kernel in the memory (kernel will be placed at this position after linking
     DISK_ID db 0
 
-    datalen: EQU $-(dataStart+1)
     DW 0xAA55
+    datalen: EQU $-(dataStart+1)
 
 section .text
 
