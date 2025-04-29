@@ -20,11 +20,11 @@ boot:
 
 chkboot:
 	@make boot
-	@bless ./bin/os.bin
+	@bless ./bin/boot.bin
 
 execboot:
 	@make boot
-	@qemu-system-x86_64 -hda ./bin/os.bin
+	@qemu-system-x86_64 -drive format=raw,file="./bin/os.bin",index=0,if=floppy,  -m 128M
 
 clean:
 	@rm -f ./bin/*
