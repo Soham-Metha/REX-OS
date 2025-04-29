@@ -29,6 +29,7 @@ dataStart:
 
     CODE_OFFSET equ codeDescriptor-gdtStart
     DATA_OFFSET equ dataDescriptor-gdtStart
+    KERNEL_POS  equ 0x1000      ; segment base address for kernel
 
     bootable: DW 0xAA55
 datalen: EQU $-dataStart
@@ -36,6 +37,7 @@ datalen: EQU $-dataStart
 section .text
 
 _start:
+    MOV [DISK_ID],DL
     CLI
     MOV AX, CS
     MOV DS, AX
@@ -43,6 +45,19 @@ _start:
     MOV SS, AX
     MOV SP, 0x7C00
     STI
+
+    MOV AL, 1   ; SECTORS TO READ?
+    MOV CH, 0   ; C
+    MOV DH, 0   ; H
+    MOV CL, 2   ; S
+    MOV DL,[DISK_ID]
+    MOV BX, KERNEL_POS
+    MOV AH, 2
+    INT 0x13
+
+    MOV AX, 0x0003
+    INT 0x10
+
 
 loadProtectedMode:
     CLI
@@ -70,6 +85,8 @@ main:
     MOV AL,'A'
     MOV AH,0x0F
     MOV [0xB8000], AX
+
+    JMP KERNEL_POS
 
     JMP $
 
