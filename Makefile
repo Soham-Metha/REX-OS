@@ -5,8 +5,8 @@ boot:
 	echo " BOOT FILE UPDATED "
 
 chkboot:
-	@make boot &&
-	@bless ./bin/boot.bin
+	make boot &&
+	bless ./bin/boot.bin
 
 execboot:
 	@make boot &&
