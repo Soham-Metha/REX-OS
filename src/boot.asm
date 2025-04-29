@@ -65,7 +65,6 @@ startRealMode:
     MOV EAX,CR0
     OR AL, 1
     MOV CR0,EAX
-    JMP CODE_OFFSET:startProtectedMode
 
 
 
