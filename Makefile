@@ -47,5 +47,3 @@ boot.bin:
 clean:
 	@rm -f ./*.bin
 	@rm -f ./*.o
-
-@make clean
