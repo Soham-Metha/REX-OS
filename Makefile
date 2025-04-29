@@ -30,18 +30,18 @@ all: clean boot.bin kernel.bin
 	@dd 	if=./boot.bin 				>> ./os.bin
 	@dd 	if=./kernel.bin 			>> ./os.bin
 #	@dd 	if=/dev/zero bs=512 count=8 >> ./os.bin
-	@echo " OS BINARY UPDATED "
+	@echo " 	OS BINARY UPDATED "
 
-	@echo " BOOT FILE UPDATED "
+	@echo " 	BOOT FILE UPDATED "
 
 kernel.bin:
 	@$(AS)	$(KERNEL_A) -o $(KERNEL_A_OBJ) -f elf
-	@echo " KERNEL ASSEMBLY FILE PROCESSED "
+	@echo " 	KERNEL ASSEMBLY FILE PROCESSED "
 	@$(CC)  $(KERNEL_C) -o $(KERNEL_C_OBJ) $(CFLAGS)
-	@echo " KERNEL C FILE PROCESSED "
+	@echo " 	KERNEL C FILE PROCESSED "
 	
 	@$(LD)  $(FILES) 	-o $@ -Ttext 0x1000 --oformat binary
-	@echo " KERNEL LINKED "
+	@echo " 	KERNEL LINKED "
 
 boot.bin:
 	@$(AS) 	$(BOOT_A) 	-o $@ -f bin
