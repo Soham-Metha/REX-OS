@@ -6,5 +6,6 @@ _start:
 
     [extern kernel_main]
     call kernel_main
+    HLT
 
 times 512-($ - $$) db 0
