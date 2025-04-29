@@ -85,7 +85,7 @@ startProtectedMode:
     OR AL, 2
     OUT 0x92, AL
 
-    JMP CODE_OFFSET:0x100000
+    JMP CODE_OFFSET:0x10000
 
 exit:
     CLI
