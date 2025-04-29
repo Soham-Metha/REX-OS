@@ -75,7 +75,7 @@ startProtectedMode:
     MOV FS, AX
     MOV GS, AX
     MOV SS, AX
-    MOV EBP,0x9C00
+    MOV EBP,0x90000
     MOV ESP,EBP
 
     ; Trick to enable pin A20
