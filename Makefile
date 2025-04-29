@@ -8,7 +8,7 @@ FILES = ./bin/kernelWrapper.o ./bin/kernel.o
 boot:
 	@nasm 	-f bin	./src/boot.asm 			-o ./bin/boot.bin 			
 	@nasm  -g 	./src/kernel.asm 		-o ./bin/kernelWrapper.o 	-f elf
-	@$(CC) 	./src/kernel.c 			-o ./bin/kernel.o 			-std=gnu99 	-I $(IDIR) $(FLAGS) 
+	@$(CC) -c 	./src/kernel.c 			-o ./bin/kernel.o 			-std=gnu99 	-I $(IDIR) $(FLAGS) 
 	@$(LD) -g  	$(FILES) 				-o ./bin/kernel.bin 	-T $(BINFORMAT) -nostdlib
 
 	@cat "./bin/boot.bin" "./bin/kernel.bin"  > "./bin/os.bin"
