@@ -2,7 +2,10 @@
 extern void kernel_main() {
     
     char* str = "Hello, Kernel!";
-    *(char*)0xB8000 = *str;
+    while (*str) {
+        *(char*)0xB8000 = *str | 0x0F00;
+        str++;
+    }
 
     while (1) {
         
