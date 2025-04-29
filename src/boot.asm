@@ -2,9 +2,9 @@
 
 section .data
 dataStart:
-    KERNEL_BASE  equ 0x1000      ; segment base address for kernel
+    ;KERNEL_BASE  equ 0x1000      ; segment base address for kernel
     ;KERNEL_START equ     ; expected position of kernel in the memory (kernel will be placed at this position after linking
-    DISK_ID db 0
+    ;DISK_ID db 0
 
     gdtStart:
         dd 0
@@ -39,7 +39,7 @@ dataStart:
 section .text
 
 startRealMode:
-    MOV [DISK_ID],DL
+    ;MOV [DISK_ID],DL
     CLI
     MOV AX, CS
     MOV DS, AX
@@ -85,7 +85,7 @@ startProtectedMode:
     OR AL, 2
     OUT 0x92, AL
 
-    JMP CODE_OFFSET:0x10000
+    ;JMP CODE_OFFSET:0x10000
 
 exit:
     CLI
