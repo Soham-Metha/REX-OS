@@ -9,7 +9,7 @@ boot:
 	@nasm 	-f bin	./src/boot.asm 			-o ./bin/boot.bin 			
 	@nasm  -g 	./src/kernel.asm 		-o ./bin/kernelWrapper.o 	-f elf
 	@$(CC) -c 	./src/kernel.c 			-o ./bin/kernel.o 			-std=gnu99 	-I $(IDIR) $(FLAGS) 
-	@$(LD) -g  	$(FILES) 				-o ./bin/linkedKernel.bin 	-T $(BINFORMAT) -nostdlib
+	@$(LD) -g  	$(FILES) 				-o ./bin/kernel.bin 	-T $(BINFORMAT) -nostdlib
 
 	@dd 		if=./bin/boot.bin 			>> ./bin/os.bin
 	@dd 		if=./bin/kernel.bin 		>> ./bin/os.bin
