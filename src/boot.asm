@@ -91,4 +91,4 @@ exit:
     CLI
     HLT
 
-TIMES 510-(($-$$-1)+datalen) DB 0
+TIMES 510-(($-$$+1)+datalen) DB 0
