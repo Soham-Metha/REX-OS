@@ -4,7 +4,7 @@ section .data
 dataStart:
     KERNEL_BASE  equ 0x1000      ; segment base address for kernel
     ;KERNEL_START equ     ; expected position of kernel in the memory (kernel will be placed at this position after linking
-    DISK_ID db 0
+    ;DISK_ID db 0
 
     gdtStart:
         dd 0
@@ -39,7 +39,14 @@ dataStart:
 section .text
 
 startRealMode:
-    MOV [DISK_ID],DL
+    MOV AL, 1   ; SECTORS TO READ?
+    MOV CH, 0   ; C
+    MOV DH, 0   ; H
+    MOV CL, 2   ; S
+    MOV BX, KERNEL_BASE
+    MOV AH, 2
+    INT 0x13
+
     CLI
     MOV AX, CS
     MOV DS, AX
@@ -47,15 +54,6 @@ startRealMode:
     MOV SS, AX
     MOV SP, 0x7C00
     STI
-
-    MOV AL, 1   ; SECTORS TO READ?
-    MOV CH, 0   ; C
-    MOV DH, 0   ; H
-    MOV CL, 2   ; S
-    MOV DL,[DISK_ID]
-    MOV BX, KERNEL_BASE
-    MOV AH, 2
-    INT 0x13
 
     MOV AH, 0x00
     MOV AL, 0x03
