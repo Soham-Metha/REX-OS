@@ -1,15 +1,15 @@
 
 
 boot:
-	nasm -f bin ./src/boot.asm -o ./bin/boot.bin &&
-	echo " BOOT FILE UPDATED "
+	@nasm -f bin ./src/boot.asm -o ./bin/boot.bin
+	@echo " BOOT FILE UPDATED "
 
 chkboot:
-	make boot &&
-	bless ./bin/boot.bin
+	@make boot
+	@bless ./bin/boot.bin
 
 execboot:
-	@make boot &&
+	@make boot
 	@qemu-system-x86_64 -hda ./bin/boot.bin
 
 clean:
