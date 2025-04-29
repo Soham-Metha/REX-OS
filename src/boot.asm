@@ -88,4 +88,7 @@ startProtectedMode:
     JMP CODE_OFFSET:0x100000
 
 exit:
+    CLI
+    HLT
+
 TIMES (510-($-$$)-datalen) DB 0
