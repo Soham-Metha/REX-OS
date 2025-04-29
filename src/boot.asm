@@ -30,7 +30,8 @@ dataStart:
 
     CODE_OFFSET equ codeDescriptor-gdtStart
     DATA_OFFSET equ dataDescriptor-gdtStart
-    KERNEL_POS  equ 0x1000      ; segment base address for kernel
+    KERNEL_BASE  equ 0x1000      ; segment base address for kernel
+    KERNEL_START equ 0x100000    ; expected position of kernel in the memory (kernel will be placed at this position after linking
     DISK_ID db 0
 
     bootable: DW 0xAA55
@@ -52,7 +53,7 @@ _start:
     MOV DH, 0   ; H
     MOV CL, 2   ; S
     MOV DL,[DISK_ID]
-    MOV BX, KERNEL_POS
+    MOV BX, KERNEL_BASE
     MOV AH, 2
     INT 0x13
 
@@ -71,6 +72,7 @@ loadProtectedMode:
 
 [BITS 32]
 main:
+    ; After entering Protected Mode, the segment registers must be selectors that point to entries in the GDT
     MOV AX, DATA_OFFSET
     MOV DS, AX
     MOV ES, AX
@@ -80,15 +82,12 @@ main:
     MOV EBP,0x9C00
     MOV ESP,EBP
 
+    ; Trick to enable pin A20
     IN AL, 0x92
     OR AL, 2
     OUT 0x92, AL
 
-    MOV AL,'A'
-    MOV AH,0x0F
-    MOV [0xB8000], AX
-
-    JMP KERNEL_POS
+    JMP KERNEL_BASE
 
     JMP $
 
