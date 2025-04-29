@@ -1,4 +1,5 @@
 [ORG 0x7C00]
+    MOV [DISK_ID],DL
 
 section .data
 dataStart:
@@ -38,7 +39,6 @@ datalen: EQU $-dataStart
 section .text
 
 _start:
-    MOV [DISK_ID],DL
     CLI
     MOV AX, CS
     MOV DS, AX
