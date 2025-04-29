@@ -86,5 +86,6 @@ startProtectedMode:
     OUT 0x92, AL
 
     JMP CODE_OFFSET:KERNEL_START
-
+    
+exit:
 TIMES (510-($-$$)-datalen) DB 0
