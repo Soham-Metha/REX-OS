@@ -2,9 +2,9 @@
 
 section .data
 dataStart:
-    ;KERNEL_BASE  equ 0x1000      ; segment base address for kernel
+    KERNEL_BASE  equ 0x1000      ; segment base address for kernel
     ;KERNEL_START equ     ; expected position of kernel in the memory (kernel will be placed at this position after linking
-    DISK_ID dw 1
+    DISK_ID db 0
 
     gdtStart:
         dd 0
@@ -33,8 +33,8 @@ dataStart:
     CODE_OFFSET equ codeDescriptor-gdtStart
     DATA_OFFSET equ dataDescriptor-gdtStart
 
-    datalen: EQU $-(dataStart)
     bootable: DW 0xAA55
+    datalen: EQU $-(dataStart)
 
 section .text
 
@@ -48,14 +48,14 @@ startRealMode:
     MOV SP, 0x7C00
     STI
 
-    ;MOV AL, 1   ; SECTORS TO READ?
-    ;MOV CH, 0   ; C
-    ;MOV DH, 0   ; H
-    ;MOV CL, 2   ; S
-    ;MOV DL,[DISK_ID]
-    ;MOV BX, KERNEL_BASE
-    ;MOV AH, 2
-    ;INT 0x13
+    MOV AL, 1   ; SECTORS TO READ?
+    MOV CH, 0   ; C
+    MOV DH, 0   ; H
+    MOV CL, 2   ; S
+    MOV DL,[DISK_ID]
+    MOV BX, KERNEL_BASE
+    MOV AH, 2
+    INT 0x13
 
     MOV AH, 0x00
     MOV AL, 0x03
@@ -85,7 +85,7 @@ startProtectedMode:
     OR AL, 2
     OUT 0x92, AL
 
-    ;JMP CODE_OFFSET:0x10000
+    JMP CODE_OFFSET:0x100000
 
 exit:
     CLI
