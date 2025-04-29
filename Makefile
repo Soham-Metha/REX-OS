@@ -10,7 +10,7 @@ boot:
 	@nasm  -g 	./src/kernel.asm 		-o ./bin/kernelWrapper.o 	-f elf
 	@$(CC) -c 	./src/kernel.c 			-o ./bin/kernel.o 			-std=gnu99 	-I $(IDIR) $(FLAGS) 
 	@$(LD) -g  	$(FILES) 				-o ./bin/linkedKernel.o 	-relocatable
-	@$(CC)  	./bin/linkedKernel.o 	-o ./bin/kernel.bin 		$(FLAGS) -T $(BINFORMAT)
+	@$(CC)  	./bin/linkedKernel.o 	-o ./bin/kernel.bin 		$(FLAGS) -Ttext 0x1000 --oformat binary
 
 	@dd 		if=./bin/boot.bin 			>> ./bin/os.bin
 	@dd 		if=./bin/kernel.bin 		>> ./bin/os.bin
