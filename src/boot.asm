@@ -39,7 +39,7 @@ datalen: EQU $-dataStart
 
 section .text
 
-_start:
+startRealMode:
     CLI
     MOV AX, CS
     MOV DS, AX
@@ -60,18 +60,16 @@ _start:
     MOV AH, 0x00
     MOV AL, 0x03
     INT 0x10
-
-
-loadProtectedMode:
+    ;load Protected Mode
     CLI
     LGDT [gdt]
     MOV EAX,CR0
     OR AL, 1
     MOV CR0,EAX
-    JMP CODE_OFFSET:main
+    JMP CODE_OFFSET:startProtectedMode
 
 [BITS 32]
-main:
+startProtectedMode:
     ; After entering Protected Mode, the segment registers must be selectors that point to entries in the GDT
     MOV AX, DATA_OFFSET
     MOV DS, AX
