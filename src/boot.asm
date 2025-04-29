@@ -38,7 +38,7 @@ dataStart:
 section .text
 
 startRealMode:
-    MOV AL, 1   ; SECTORS TO READ?
+    MOV AL, 8   ; SECTORS TO READ?
     MOV CH, 0   ; C
     MOV DH, 0   ; H
     MOV CL, 2   ; S
