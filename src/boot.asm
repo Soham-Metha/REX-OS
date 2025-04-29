@@ -91,4 +91,4 @@ exit:
     HLT
 
 TIMES (510-($-$$)-datalen) DB 0
-    bootable: DW 0xAA55
+DW 0xAA55
