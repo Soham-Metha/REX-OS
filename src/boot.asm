@@ -46,7 +46,7 @@ startRealMode:
     MOV AH, 2
     INT 0x13
 
-    jc exit
+    ;jc exit
 
     CLI
     MOV AX, CS
