@@ -67,24 +67,7 @@ startRealMode:
     MOV CR0,EAX
     JMP CODE_OFFSET:startProtectedMode
 
-[BITS 32]
-startProtectedMode:
-    ; After entering Protected Mode, the segment registers must be selectors that point to entries in the GDT
-    MOV AX, DATA_OFFSET
-    MOV DS, AX
-    MOV ES, AX
-    MOV FS, AX
-    MOV GS, AX
-    MOV SS, AX
-    MOV EBP,0x90000
-    MOV ESP,EBP
 
-    ; Trick to enable pin A20
-    IN AL, 0x92
-    OR AL, 2
-    OUT 0x92, AL
-
-    ;JMP CODE_OFFSET:KERNEL_START
 
 exit:
     CLI
