@@ -7,21 +7,21 @@ dataStart:
         dd 0
         dd 0
 
-    codeDescriptor:
-        dW 0xFFFF
-        DW 0x0000
-        DB 0x00
-        DB 10011010b
-        DB 11001111b
-        DB 0x00
+    codeDescriptor:             ;   |---------------------------------|------------------------------------|
+        dW 0xFFFF               ;   |       BASE ADDRESS              |         SEGMENT LIMIT              |    First 16 bits of limit
+        DW 0x0000               ;   |           0 - 15                |             0 - 15                 |    First 16 bits of base
+        DB 0x00                 ;   |----------------------------------------------------------------------|    Next 8 bits of base
+        DB 10011010b            ;   | BASE  | G | D | L | AVL | LIMIT | P | DPL | S | E | C | R | A | BASE |    Present [1], DPL [00], System [1], Type(Executable,Conforming,Read) [101], Access [0]
+        DB 11001111b            ;   | 24-31 |   |   |   |     |       |   |     |   |           |          |
+        DB 0x00                 ;   |---------------------------------|------------------------------------|
 
-    dataDescriptor:
-        dW 0xFFFF
-        DW 0x0000
-        DB 0x00
-        DB 10010010b
-        DB 11001111b
-        DB 0x00
+    dataDescriptor:             ;
+        dW 0xFFFF               ;
+        DW 0x0000               ;
+        DB 0x00                 ;
+        DB 10010010b            ;
+        DB 11001111b            ;
+        DB 0x00                 ;
 
     gdt:
         DW gdt-gdtStart-1
