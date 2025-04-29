@@ -48,14 +48,14 @@ startRealMode:
     MOV SP, 0x7C00
     STI
 
-    MOV AL, 1   ; SECTORS TO READ?
-    MOV CH, 0   ; C
-    MOV DH, 0   ; H
-    MOV CL, 2   ; S
-    MOV DL,[DISK_ID]
-    MOV BX, KERNEL_BASE
-    MOV AH, 2
-    INT 0x13
+    ;MOV AL, 1   ; SECTORS TO READ?
+    ;MOV CH, 0   ; C
+    ;MOV DH, 0   ; H
+    ;MOV CL, 2   ; S
+    ;MOV DL,[DISK_ID]
+    ;MOV BX, KERNEL_BASE
+    ;MOV AH, 2
+    ;INT 0x13
 
     MOV AH, 0x00
     MOV AL, 0x03
