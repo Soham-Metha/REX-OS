@@ -56,7 +56,8 @@ _start:
     MOV AH, 2
     INT 0x13
 
-    MOV AX, 0x0003
+    MOV AH, 0x00
+    MOV AL, 0x03
     INT 0x10
 
 
