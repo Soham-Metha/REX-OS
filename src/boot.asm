@@ -16,7 +16,7 @@ dataStart:
         DB 10011010b
         DB 11001111b
         DB 0x00
-        
+
     dataDescriptor:
         dW 0xFFFF
         DW 0x0000
