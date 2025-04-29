@@ -38,7 +38,7 @@ dataStart:
 section .text
 
 startRealMode:
-    MOV AL, 90   ; SECTORS TO READ?
+    MOV AL, 9   ; SECTORS TO READ?
     MOV CH, 0   ; C
     MOV DH, 0   ; H
     MOV CL, 2   ; S
@@ -46,7 +46,7 @@ startRealMode:
     MOV AH, 2
     INT 0x13
 
-    ;jc exit
+    jc exit
 
     CLI
     MOV AX, CS
