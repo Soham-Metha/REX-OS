@@ -17,7 +17,7 @@ KERNEL_A_OBJ = ./kernelWrapper.o
 KERNEL_C_OBJ = ./kernel.o
 FILES = 	   $(KERNEL_A_OBJ) 	   $(KERNEL_C_OBJ)
 
-execboot: all clean
+execboot: all
 	@qemu-system-x86_64 -drive format=raw,file="./os.bin",index=0,if=floppy,  -m 128M
 
 chkboot: execboot
@@ -47,3 +47,5 @@ boot.bin:
 clean:
 	@rm -f ./*.bin
 	@rm -f ./*.o
+
+@make clean
