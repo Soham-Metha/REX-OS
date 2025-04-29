@@ -30,7 +30,7 @@ dataStart:
     CODE_OFFSET equ codeDescriptor-gdtStart
     DATA_OFFSET equ dataDescriptor-gdtStart
     KERNEL_BASE  equ 0x1000      ; segment base address for kernel
-    KERNEL_START equ 0x100000    ; expected position of kernel in the memory (kernel will be placed at this position after linking
+    ;KERNEL_START equ     ; expected position of kernel in the memory (kernel will be placed at this position after linking
     DISK_ID db 0
 
     bootable: DW 0xAA55
@@ -85,7 +85,7 @@ startProtectedMode:
     OR AL, 2
     OUT 0x92, AL
 
-    JMP CODE_OFFSET:KERNEL_START
+    JMP CODE_OFFSET:0x100000
 
 exit:
 TIMES (510-($-$$)-datalen) DB 0
