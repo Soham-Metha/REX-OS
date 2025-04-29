@@ -34,7 +34,7 @@ dataStart:
     DISK_ID db 0
 
     datalen: EQU $-(dataStart+1)
-    bootable: DW 0xAA55
+    DW 0xAA55
 
 section .text
 
