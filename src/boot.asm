@@ -85,7 +85,7 @@ startProtectedMode:
     OR AL, 2
     OUT 0x92, AL
 
-    JMP KERNEL_BASE
+    JMP KERNEL_START
 
     JMP $
 
