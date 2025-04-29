@@ -33,7 +33,6 @@ dataStart:
     ;KERNEL_START equ     ; expected position of kernel in the memory (kernel will be placed at this position after linking
     DISK_ID db 0
 
-    bootable: DW 0xAA55
     datalen: EQU $-dataStart
 
 section .text
@@ -92,3 +91,4 @@ exit:
     HLT
 
 TIMES (510-($-$$)-datalen) DB 0
+    bootable: DW 0xAA55
