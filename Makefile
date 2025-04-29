@@ -19,9 +19,12 @@ FILES = 	   $(KERNEL_A_OBJ) 	   $(KERNEL_C_OBJ)
 
 execboot: all
 	@qemu-system-x86_64 -drive format=raw,file="./os.bin",index=0,if=floppy,  -m 128M
+	@make clean
 
-chkboot: execboot
+chkboot: all
+	@qemu-system-x86_64 -drive format=raw,file="./os.bin",index=0,if=floppy,  -m 128M
 	@bless 	./os.bin
+	@make clean
 
 all: boot.bin kernel.bin
 
