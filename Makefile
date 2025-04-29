@@ -32,8 +32,6 @@ all: clean boot.bin kernel.bin
 #	@dd 	if=/dev/zero bs=512 count=8 >> ./os.bin
 	@echo " 	OS BINARY UPDATED "
 
-	@echo " 	BOOT FILE UPDATED "
-
 kernel.bin:
 	@$(AS)	$(KERNEL_A) -o $(KERNEL_A_OBJ) -f elf
 	@echo " 	KERNEL ASSEMBLY FILE PROCESSED "
@@ -45,6 +43,8 @@ kernel.bin:
 
 boot.bin:
 	@$(AS) 	$(BOOT_A) 	-o $@ -f bin
+
+	@echo " 	BOOT FILE UPDATED "
 
 clean:
 	@rm -f ./*.bin
