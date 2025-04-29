@@ -33,8 +33,8 @@ dataStart:
     CODE_OFFSET equ codeDescriptor-gdtStart
     DATA_OFFSET equ dataDescriptor-gdtStart
 
-    bootable: DW 0xAA55
     datalen: EQU $-(dataStart)
+    bootable: DW 0xAA55
 
 section .text
 
