@@ -1,6 +1,19 @@
 #include "kernel.h"
 
 void kernel_main(){
-    *(char*)0xb8000 = "HELLO WORLD!";
+    
+    *(char*)0xb8000 = 'H';
+    *(char*)0xb8001 = 'e';
+    *(char*)0xb8002 = 'l';
+    *(char*)0xb8003 = 'l';
+    *(char*)0xb8004 = 'o';
+    *(char*)0xb8005 = ' ';
+    *(char*)0xb8006 = 'W';
+    *(char*)0xb8007 = 'o';
+    *(char*)0xb8008 = 'r';
+    *(char*)0xb8009 = 'l';
+    *(char*)0xb800A = 'd';
+    *(char*)0xb800B = '!';
+    
     return;
 }
