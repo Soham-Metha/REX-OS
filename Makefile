@@ -6,7 +6,7 @@ FLAGS = -g -ffreestanding -nostdlib -nostartfiles -nodefaultlibs -Wall -O0 -Iinc
 FILES = ./bin/kernelWrapper.o ./bin/kernel.o
 
 boot:
-	@nasm 		./src/boot.asm 			-o ./bin/boot.bin 			-f bin
+	@nasm 	-f bin	./src/boot.asm 			-o ./bin/boot.bin 			
 	@nasm  -g 	./src/kernel.asm 		-o ./bin/kernelWrapper.o 	-f elf
 	@$(CC) -c 	./src/kernel.c 			-o ./bin/kernel.o 			-std=gnu99 	-I $(IDIR) $(FLAGS) 
 	@$(LD) -g  	$(FILES) 				-o ./bin/linkedKernel.o 	-relocatable
