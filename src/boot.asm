@@ -3,8 +3,6 @@
 section .data
 dataStart:
 
-    CODE_OFFSET equ 0x8
-    DATA_OFFSET equ 0x10
     gdtStart:
         dd 0
         dd 0
@@ -28,6 +26,9 @@ dataStart:
     gdt:
         DW gdt-gdtStart-1
         DD gdtStart
+
+    CODE_OFFSET equ codeDescriptor-gdtStart
+    DATA_OFFSET equ dataDescriptor-gdtStart
 
     bootable: DW 0xAA55
 datalen: EQU $-dataStart
