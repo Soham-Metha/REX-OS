@@ -19,7 +19,7 @@ boot:
 
 chkboot:
 	@make boot
-	@bless ./bin/boot.bin
+	@bless ./bin/os.bin
 
 execboot:
 	@make boot
