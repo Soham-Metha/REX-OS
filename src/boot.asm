@@ -87,4 +87,4 @@ startProtectedMode:
 
     JMP KERNEL_START
 
-TIMES (510-($-$$)-datalen) DB 0
+TIMES (510-($-$$)-datalen-1) DB 0
