@@ -12,8 +12,8 @@ dataStart:
         DW 0x0000               ;   |           0 - 15                |             0 - 15                 |    First 16 bits of base
         DB 0x00                 ;   |----------------------------------------------------------------------|    Next 8 bits of base
         DB 10011010b            ;   | BASE  | G | D | L | AVL | LIMIT | P | DPL | S | E | C | R | A | BASE |    Present [1], DPL [00], System [1], Type(Executable,Conforming,Read) [101], Access [0]
-        DB 11001111b            ;   | 24-31 |   |   |   |     |       |   |     |   |           |          |
-        DB 0x00                 ;   |---------------------------------|------------------------------------|
+        DB 11001111b            ;   | 24-31 |   |   |   |     |       |   |     |   |           |          |    G [1], D[1], L [0], AVL [0], Limit [1111]
+        DB 0x00                 ;   |---------------------------------|------------------------------------|    Last 16 bits of base
 
     dataDescriptor:             ;
         dW 0xFFFF               ;
