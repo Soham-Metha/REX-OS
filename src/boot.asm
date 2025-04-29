@@ -82,6 +82,9 @@ startProtectedMode:
     OR AL, 2
     OUT 0x92, AL
 
+    MOV AX,0x03
+    INT 0x10
+
     JMP CODE_OFFSET:KERNEL_START
 
 exit:
