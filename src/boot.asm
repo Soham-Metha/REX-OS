@@ -2,12 +2,14 @@
 
 section .data
 dataStart:
+
     CODE_OFFSET equ 0x8
     DATA_OFFSET equ 0x10
     gdtStart:
         dd 0
         dd 0
 
+    codeDescriptor:
         dW 0xFFFF
         DW 0x0000
         DB 0x00
@@ -15,6 +17,7 @@ dataStart:
         DB 11001111b
         DB 0x00
         
+    dataDescriptor:
         dW 0xFFFF
         DW 0x0000
         DB 0x00
