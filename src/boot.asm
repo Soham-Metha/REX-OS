@@ -3,7 +3,6 @@
 section .data
 dataStart:
     KERNEL_BASE  equ 0x1000      ; segment base address for kernel
-    KERNEL_START equ 0x100000    ; expected position of kernel in the memory (kernel will be placed at this position after linking
 
     gdtStart:
         dd 0
@@ -56,9 +55,9 @@ startRealMode:
     MOV SP, 0x7C00
     STI
 
-    ;MOV AH, 0x00
-    ;MOV AL,0x03
-    ;INT 0x10
+    MOV AH, 0x00
+    MOV AL,0x03
+    INT 0x10
     ;load Protected Mode
     CLI
     LGDT [gdt]
@@ -83,10 +82,6 @@ startProtectedMode:
     IN AL, 0x92
     OR AL, 2
     OUT 0x92, AL
-
-    mov al, 'A'
-    mov ah, 0x0f
-    mov [0xb8000], ax
 
     JMP CODE_OFFSET:KERNEL_BASE
 
