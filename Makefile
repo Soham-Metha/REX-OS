@@ -25,7 +25,7 @@ execboot: all
 chkboot: execboot
 	@bless 	./os.bin
 
-all: boot.bin kernel.bin
+all: clean boot.bin kernel.bin
 
 	@dd 	if=./boot.bin 				>> ./os.bin
 	@dd 	if=./kernel.bin 			>> ./os.bin
