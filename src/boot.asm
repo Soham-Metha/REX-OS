@@ -1,5 +1,4 @@
 [ORG 0x7C00]
-MOV [DISK_ID],DL
 
 section .data
 dataStart:
@@ -40,6 +39,7 @@ dataStart:
 section .text
 
 startRealMode:
+    MOV [DISK_ID],DL
     CLI
     MOV AX, CS
     MOV DS, AX
@@ -86,6 +86,6 @@ startProtectedMode:
     OUT 0x92, AL
 
     JMP CODE_OFFSET:KERNEL_START
-    
+
 exit:
 TIMES (510-($-$$)-datalen) DB 0
