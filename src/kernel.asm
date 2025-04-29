@@ -8,7 +8,7 @@ _start:
     mov [0xb8000], ax
     [BITS 32]
     [extern kernel_main]
-    call kernel_main
+    ;call kernel_main
     HLT
 
 times 512-($ - $$) db 0
