@@ -9,11 +9,10 @@ boot:
 	@nasm 	-f bin	./src/boot.asm 			-o ./bin/boot.bin 			
 	@nasm  -g 	./src/kernel.asm 		-o ./bin/kernelWrapper.o 	-f elf
 	@$(CC) -c 	./src/kernel.c 			-o ./bin/kernel.o 			-std=gnu99 	-I $(IDIR) $(FLAGS) 
-	@$(LD) -g  	$(FILES) 				-o ./bin/linkedKernel.o 	-relocatable
-	@$(CC)  	./bin/linkedKernel.o 	-o ./bin/kernel.bin 		$(FLAGS) -Ttext 0x1000 --oformat binary
+	@$(LD) -g  	$(FILES) 				-o ./bin/linkedKernel.bin 	-relocatable  -Ttext 0x1000 --oformat binary
 
 	@dd 		if=./bin/boot.bin 			>> ./bin/os.bin
-	@dd 		if=./bin/kernel.bin 		>> ./bin/os.bin
+	@dd 		if=./bin/linkedKernel.bin 		>> ./bin/os.bin
 	@dd 		if=/dev/zero bs=512 count=8 >> ./bin/os.bin
 
 	@echo " BOOT FILE UPDATED "
