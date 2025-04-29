@@ -8,5 +8,5 @@ _start:
     mov [0xb8000], ax
     [BITS 32]
     [extern kernel_main]
-    call kernel_main
+    call 0x513
     HLT
