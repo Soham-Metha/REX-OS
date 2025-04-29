@@ -4,8 +4,7 @@ section .data
 dataStart:
     ;KERNEL_BASE  equ 0x1000      ; segment base address for kernel
     ;KERNEL_START equ     ; expected position of kernel in the memory (kernel will be placed at this position after linking
-    DISK_ID db 0
-    padding db 0
+    DISK_ID db 1
 
     gdtStart:
         dd 0
