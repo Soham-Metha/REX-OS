@@ -82,7 +82,7 @@ startProtectedMode:
     OR AL, 2
     OUT 0x92, AL
 
-    JMP CODE_OFFSET:
+    JMP CODE_OFFSET:KERNEL_START
 
 exit:
     CLI
