@@ -87,10 +87,4 @@ startProtectedMode:
 
     JMP KERNEL_START
 
-    JMP $
-
-exit:
-    CLI
-    HLT
-
-    TIMES (510-($-$$)-datalen) DB 0
+TIMES (510-($-$$)-datalen) DB 0
