@@ -11,7 +11,9 @@ boot:
 	@$(CC) -c 	./src/kernel.c 			-o ./bin/kernel.o 			-std=gnu99 	-I $(IDIR) $(FLAGS) 
 	@$(LD) -g  	$(FILES) 				-o ./bin/kernel.bin 	-T $(BINFORMAT) -nostdlib
 
-	@cat "./bin/boot.bin" "./bin/kernel.bin"  > "./bin/os.bin"
+	@dd 		if=./bin/boot.bin 			>> ./bin/os.bin
+	@dd 		if=./bin/kernel.bin 		>> ./bin/os.bin
+	@dd 		if=/dev/zero bs=512 count=8 >> ./bin/os.bin
 
 	@echo " BOOT FILE UPDATED "
 
