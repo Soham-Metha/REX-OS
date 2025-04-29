@@ -54,8 +54,7 @@ startRealMode:
     MOV SP, 0x7C00
     STI
 
-    MOV AH, 0x00
-    MOV AL, 0x03
+    MOV AX,0x03
     INT 0x10
     ;load Protected Mode
     CLI
@@ -81,9 +80,6 @@ startProtectedMode:
     IN AL, 0x92
     OR AL, 2
     OUT 0x92, AL
-
-    MOV AX,0x03
-    INT 0x10
 
     JMP CODE_OFFSET:KERNEL_START
 
