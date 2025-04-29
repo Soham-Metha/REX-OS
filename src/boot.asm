@@ -88,7 +88,7 @@ startProtectedMode:
     mov ah, 0x0f
     mov [0xb8000], ax
 
-    JMP 0x08:0x1000
+    JMP CODE_OFFSET:KERNEL_BASE
 
 exit:
     CLI
