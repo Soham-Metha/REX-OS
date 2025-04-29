@@ -13,7 +13,7 @@ boot:
 
 	@dd 		if=./bin/boot.bin 			>> ./bin/os.bin
 	@dd 		if=./bin/kernel.bin 		>> ./bin/os.bin
-	@dd 		if=/dev/zero bs=512 count=8 >> ./bin/os.bin
+#	@dd 		if=/dev/zero bs=512 count=8 >> ./bin/os.bin
 
 	@echo " BOOT FILE UPDATED "
 
