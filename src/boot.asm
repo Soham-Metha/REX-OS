@@ -52,6 +52,7 @@ loadProtectedMode:
     MOV CR0,EAX
     JMP CODE_OFFSET:main
 
+[BITS 32]
 main:
     MOV AX, DATA_OFFSET
     MOV DS, AX
