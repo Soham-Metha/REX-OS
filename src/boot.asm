@@ -30,6 +30,7 @@ dataStart:
     CODE_OFFSET equ codeDescriptor-gdtStart
     DATA_OFFSET equ dataDescriptor-gdtStart
     KERNEL_POS  equ 0x1000      ; segment base address for kernel
+    DISK_ID db 0
 
     bootable: DW 0xAA55
 datalen: EQU $-dataStart
