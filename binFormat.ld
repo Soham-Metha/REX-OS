@@ -7,6 +7,10 @@ SECTIONS
     {
         *(.text)
     }
+    .code : ALIGN(4096)
+    {
+        *(.code)
+    }
 
     .rodata : ALIGN(4096)
     {
