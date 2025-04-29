@@ -1,7 +1,21 @@
-
+CC = i686-elf-gcc
+LD = i686-elf-ld
+IDIR = ./src
+BINFORMAT = ./binFormat.ld
+FLAGS = -g -ffreestanding -nostdlib -nostartfiles -nodefaultlibs -Wall -O0 -Iinc 
+FILES = ./bin/kernelWrapper.o ./bin/kernel.o
 
 boot:
-	@nasm -f bin ./src/boot.asm -o ./bin/boot.bin
+	@nasm 		./src/boot.asm 			-o ./bin/boot.bin 			-f bin
+	@nasm  -g 	./src/kernel.asm 		-o ./bin/kernelWrapper.o 	-f elf
+	@$(CC) -c 	./src/kernel.c 			-o ./bin/kernel.o 			-std=gnu99 	-I $(IDIR) $(FLAGS) 
+	@$(LD) -g  	$(FILES) 				-o ./bin/linkedKernel.o 	-relocatable
+	@$(CC)  	./bin/linkedKernel.o 	-o ./bin/kernel.bin 		$(FLAGS) -T $(BINFORMAT)
+
+	@dd 		if=./bin/boot.bin 			>> ./bin/os.bin
+	@dd 		if=./bin/kernel.bin 		>> ./bin/os.bin
+	@dd 		if=/dev/zero bs=512 count=8 >> ./bin/os.bin
+
 	@echo " BOOT FILE UPDATED "
 
 chkboot:
@@ -13,4 +27,5 @@ execboot:
 	@qemu-system-x86_64 -hda ./bin/boot.bin
 
 clean:
-	@rm -f ./bin/boot.bin
+	@rmdir ./bin
+	@mkdir ./bin
