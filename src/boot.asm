@@ -3,8 +3,7 @@
 section .data
 dataStart:
     KERNEL_BASE  equ 0x1000      ; segment base address for kernel
-    ;KERNEL_START equ     ; expected position of kernel in the memory (kernel will be placed at this position after linking
-    ;DISK_ID db 0
+    KERNEL_START equ 0x100000    ; expected position of kernel in the memory (kernel will be placed at this position after linking
 
     gdtStart:
         dd 0
@@ -83,7 +82,7 @@ startProtectedMode:
     OR AL, 2
     OUT 0x92, AL
 
-    JMP CODE_OFFSET:0x100000
+    JMP CODE_OFFSET:
 
 exit:
     CLI
