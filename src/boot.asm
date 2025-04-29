@@ -65,6 +65,10 @@ main:
     OR AL, 2
     OUT 0x92, AL
 
+    MOV AL,'A'
+    MOV AH,0x0F
+    MOV [0xB8000], AX
+
     JMP $
 
 exit:
