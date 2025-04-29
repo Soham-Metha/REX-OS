@@ -1,29 +1,47 @@
+export PREFIX := $(HOME)/opt/cross
+export TARGET := i686-elf
+export PATH := $(PREFIX)/bin:$(PATH)
+
 CC = i686-elf-gcc
+AS = nasm
 LD = i686-elf-ld
-IDIR = ./src
+
 BINFORMAT = ./binFormat.ld
-FLAGS = -g -ffreestanding -nostdlib -nostartfiles -nodefaultlibs -Wall -O0 -Iinc 
-FILES = ./bin/kernelWrapper.o ./bin/kernel.o
 
-boot:
-	@nasm 	-f bin	./src/boot.asm 			-o ./bin/boot.bin 			
-	@nasm  -g 	./src/kernel.asm 		-o ./bin/kernelWrapper.o 	-f elf
-	@$(CC) -c 	./src/kernel.c 			-o ./bin/kernel.o 			-std=gnu99 	-I $(IDIR) $(FLAGS) 
-	@$(LD) -g  	$(FILES) 				-o ./bin/kernel.bin 		-Ttext 0x1000 --oformat binary
+CFLAGS = -ffreestanding -nostdlib -nostartfiles -nodefaultlibs -Wall -O3 -Iinc -std=gnu99 -c -I ./src
 
-	@dd 		if=./bin/boot.bin 			>> ./bin/os.bin
-	@dd 		if=./bin/kernel.bin 		>> ./bin/os.bin
-#	@dd 		if=/dev/zero bs=512 count=8 >> ./bin/os.bin
+BOOT_A   = ./src/boot.asm
+KERNEL_A = $(filter-out $(BOOT_A), $(wildcard ./src/*.asm))
+KERNEL_C = $(wildcard ./src/*.c)
+
+KERNEL_A_OBJ = ./kernelWrapper.o
+KERNEL_C_OBJ = ./kernel.o
+FILES = 		$(KERNEL_A_OBJ) 		$(KERNEL_C_OBJ)
+
+
+execboot: all
+	@qemu-system-x86_64 -drive format=raw,file="./os.bin",index=0,if=floppy,  -m 128M
+
+chkboot: execboot
+	@bless ./os.bin
+
+all: boot.bin kernel.bin
+
+	@dd 		if=./boot.bin 				>> ./os.bin
+	@dd 		if=./kernel.bin 			>> ./os.bin
+#	@dd 		if=/dev/zero bs=512 count=8 >> ./os.bin
 
 	@echo " BOOT FILE UPDATED "
 
-chkboot:
-	@make boot
-	@bless ./bin/os.bin
+kernel.bin:
+	@$(AS)	 	$(KERNEL_A) 	-o $(KERNEL_A_OBJ) 	-f elf
+	@$(CC)  	$(KERNEL_C) 	-o $(KERNEL_C_OBJ) 	 $(CFLAGS)
+	
+	@$(LD)   	$(FILES) 		-o $@ -Ttext 0x1000 --oformat binary
 
-execboot:
-	@make boot
-	@qemu-system-x86_64 -drive format=raw,file="./bin/os.bin",index=0,if=floppy,  -m 128M
+boot.bin:
+	@$(AS) 		$(BOOT_A) 		-o $@ 	-f bin
 
 clean:
-	@rm -f ./bin/*
+	@rm -f ./*.bin
+	@rm -f ./*.o

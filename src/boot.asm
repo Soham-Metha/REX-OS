@@ -51,11 +51,6 @@ startProtectedMode:
 
     JMP CODE_OFFSET:KERNEL_BASE
 
-exit:
-    CLI
-    HLT
-
-
 dataStart:
     KERNEL_BASE  equ 0x1000      ; segment base address for kernel
 
@@ -86,5 +81,6 @@ dataStart:
     CODE_OFFSET equ codeDescriptor-gdtStart
     DATA_OFFSET equ dataDescriptor-gdtStart
 
-TIMES 510-($-$$) DB 0
-DW 0xAA55
+exit:
+    TIMES 510-($-$$) DB 0
+    DW 0xAA55
