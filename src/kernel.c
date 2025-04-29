@@ -1,5 +1,3 @@
-#include "kernel.h"
-
 extern void kernel_main(){
     return;
     char* vga = (char*) 0xb8000;
