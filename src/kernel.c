@@ -1,4 +1,4 @@
-
+#include <kernel.h>
 extern void kernel_main() {
     
     char* str = "Hello, Kernel!";
