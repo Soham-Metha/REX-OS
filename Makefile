@@ -24,7 +24,7 @@ chkboot:
 
 execboot:
 	@make boot
-	@qemu-system-x86_64 -drive format=raw,file="./bin/os.bin",index=0,  -m 128M
+	@qemu-system-x86_64 -drive format=raw,file="./bin/os.bin",  -m 128M
 
 clean:
 	@rm -f ./bin/*
