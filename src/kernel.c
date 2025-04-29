@@ -1,6 +1,6 @@
 #include "kernel.h"
 
-void kernel_main(){
+extern void kernel_main(){
     
     *(char*)0xb8000 = 'H';
     *(char*)0xb8001 = 'e';
@@ -14,6 +14,6 @@ void kernel_main(){
     *(char*)0xb8009 = 'l';
     *(char*)0xb800A = 'd';
     *(char*)0xb800B = '!';
-    
+
     return;
 }
