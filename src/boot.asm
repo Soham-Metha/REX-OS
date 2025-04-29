@@ -51,6 +51,7 @@ loadProtectedMode:
     OR AL, 1
     MOV CR0,EAX
 
+[BITS 32]
 main:
     MOV AX, DATA_OFFSET
     MOV DS, AX
