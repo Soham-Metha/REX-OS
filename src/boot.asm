@@ -1,5 +1,5 @@
 [ORG 0x7C00]
-    MOV [DISK_ID],DL
+MOV [DISK_ID],DL
 
 section .data
 dataStart:
@@ -35,7 +35,7 @@ dataStart:
     DISK_ID db 0
 
     bootable: DW 0xAA55
-datalen: EQU $-dataStart
+    datalen: EQU $-dataStart
 
 section .text
 
