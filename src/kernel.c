@@ -1,7 +1,7 @@
 #include "kernel.h"
 
 extern void kernel_main(){
-    char* display = 0xb8000;
+    char* display = (char*) 0xb8000;
     display[0] = 'H'; display[1] = 0x07;
     display[2] = 'e'; display[3] = 0x07;
     display[4] = 'l'; display[5] = 0x07;
