@@ -1,39 +1,5 @@
 [ORG 0x7C00]
 
-section .data
-dataStart:
-    KERNEL_BASE  equ 0x1000      ; segment base address for kernel
-
-    gdtStart:
-        dd 0
-        dd 0
-
-    codeDescriptor:             ;   |---------------------------------|------------------------------------|
-        dW 0xFFFF               ;   |       BASE ADDRESS              |         SEGMENT LIMIT              |    First 16 bits of limit
-        DW 0x0000               ;   |           0 - 15                |             0 - 15                 |    First 16 bits of base
-        DB 0x00                 ;   |----------------------------------------------------------------------|    Next 8 bits of base
-        DB 10011010b            ;   | BASE  | G | D | L | AVL | LIMIT | P | DPL | S | E | C | R | A | BASE |    Present [1], DPL [00], System [1], Type(Executable,Conforming,Read) [101], Access [0]
-        DB 11001111b            ;   | 24-31 |   |   |   |     |       |   |     |   |           |          |    G [1], D[1], L [0], AVL [0], Limit [1111]
-        DB 0x00                 ;   |---------------------------------|------------------------------------|    Last 16 bits of base
-
-    dataDescriptor:             ;
-        dW 0xFFFF               ;
-        DW 0x0000               ;
-        DB 0x00                 ;
-        DB 10010010b            ;
-        DB 11001111b            ;
-        DB 0x00                 ;
-
-    gdt:
-        DW gdt-gdtStart-1
-        DD gdtStart
-
-    CODE_OFFSET equ codeDescriptor-gdtStart
-    DATA_OFFSET equ dataDescriptor-gdtStart
-
-    bootable: DW 0xAA55
-    datalen: EQU $-(dataStart)
-
 section .text
 
 startRealMode:
@@ -89,4 +55,36 @@ exit:
     CLI
     HLT
 
-TIMES 510-(($-$$)+datalen) DB 0
+
+dataStart:
+    KERNEL_BASE  equ 0x1000      ; segment base address for kernel
+
+    gdtStart:
+        dd 0
+        dd 0
+
+    codeDescriptor:             ;   |---------------------------------|------------------------------------|
+        dW 0xFFFF               ;   |       BASE ADDRESS              |         SEGMENT LIMIT              |    First 16 bits of limit
+        DW 0x0000               ;   |           0 - 15                |             0 - 15                 |    First 16 bits of base
+        DB 0x00                 ;   |----------------------------------------------------------------------|    Next 8 bits of base
+        DB 10011010b            ;   | BASE  | G | D | L | AVL | LIMIT | P | DPL | S | E | C | R | A | BASE |    Present [1], DPL [00], System [1], Type(Executable,Conforming,Read) [101], Access [0]
+        DB 11001111b            ;   | 24-31 |   |   |   |     |       |   |     |   |           |          |    G [1], D[1], L [0], AVL [0], Limit [1111]
+        DB 0x00                 ;   |---------------------------------|------------------------------------|    Last 16 bits of base
+
+    dataDescriptor:             ;
+        dW 0xFFFF               ;
+        DW 0x0000               ;
+        DB 0x00                 ;
+        DB 10010010b            ;
+        DB 11001111b            ;
+        DB 0x00                 ;
+
+    gdt:
+        DW gdt-gdtStart-1
+        DD gdtStart
+
+    CODE_OFFSET equ codeDescriptor-gdtStart
+    DATA_OFFSET equ dataDescriptor-gdtStart
+
+TIMES 510-($-$$) DB 0
+DW 0xAA55
