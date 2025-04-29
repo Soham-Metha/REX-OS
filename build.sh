@@ -6,3 +6,4 @@ export PATH="$PREFIX/bin:$PATH"
 
 rm ./bin/os.bin
 make $1
+i686-elf-objdump -D ./bin/kernel.bin
