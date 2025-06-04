@@ -3,7 +3,7 @@ CC = gcc
 AS = nasm
 LD = ld
 
-
+BINFORMAT = ./linker.ld
 CFLAGS = -m32 -ffreestanding -nostdlib -nostartfiles -nodefaultlibs -Wall -O3 -Iinc -std=gnu99 -c -I ./src
 
 
