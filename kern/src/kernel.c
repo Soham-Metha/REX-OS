@@ -3,7 +3,7 @@
 
 extern void kernelMain()
 {
-    setBG(COLOR8_RED);
+    setBG(COLOR8_MAGENTA);
     clearScreen();
     print("Hello, kernel!");
 }
