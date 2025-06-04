@@ -42,7 +42,7 @@ boot.o:
 	@echo " 	BOOT FILE UPDATED "
 
 kernel.o:
-	@$(CC) $(CFLAGS) -c $(KERN_C) -o $@
+	@$(CC) $(CFLAGS) $(KERN_C) -o $@
 	@echo " 	KERNEL C FILE PROCESSED "
 
 clean:
