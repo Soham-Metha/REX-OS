@@ -6,4 +6,4 @@ section .text
     DD      0x1BADB002
     DD      0x00000000
     ; checksum
-    DD      -( 0x1BADB002 + 0x00000000)
+    DD      -( 0x1BADB002 + 0x00000000 )
