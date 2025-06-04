@@ -33,7 +33,7 @@ gdtFlush:
     MOVW    %AX,        %FS
     MOVW    %AX,        %GS
     MOVW    %AX,        %SS
-    ljmp    $0x08,      $flush
+    LJMP    $0x08,      $flush /* LJMP to update the CS */
 
 flush:
     RET
