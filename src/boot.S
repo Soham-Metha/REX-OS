@@ -32,6 +32,7 @@ gdtFlush:
     MOVL    %FS,        %eax
     MOVL    %GS,        %eax
     MOVL    %SS,        %eax
+    RET
 
 .section .bss
     .lcomm  stackSpace,     8192
