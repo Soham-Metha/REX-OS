@@ -15,7 +15,7 @@ KERN_F = ./REX-OS/boot/kernel
 BOOT_A = ./src/boot.S
 KERN_C = $(wildcard $(K_CODE)/*.c)
 
-CFLAGS = -m32 -ffreestanding -nostdlib -nostartfiles -nodefaultlibs -Wall -O3 -std=gnu99 -c -I $(K_HEAD)
+CFLAGS = -m32 -ffreestanding -Wall -O3 -std=gnu99 -c -I $(K_HEAD)
 LFLAGS = -m elf_i386 -T $(FORMAT)
 
 execboot: REX-OS.iso
