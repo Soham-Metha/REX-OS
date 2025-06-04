@@ -1,52 +1,53 @@
-export PREFIX := $(HOME)/opt/cross
-export TARGET := i686-elf
+export PREFIX := ./libs/cross
 export PATH := $(PREFIX)/bin:$(PATH)
 
 CC = i686-elf-gcc
-AS = nasm
+AS = i686-elf-as
 LD = i686-elf-ld
 
-BINFORMAT = ./binFormat.ld
-CFLAGS = -ffreestanding -nostdlib -nostartfiles -nodefaultlibs -Wall -O3 -Iinc -std=gnu99 -c -I ./src
+K_HEAD = ./kern/headers
+K_CODE = ./kern/src
 
-BOOT_A   = ./src/boot.asm
-KERNEL_A = $(filter-out $(BOOT_A), $(wildcard ./src/*.asm))
-KERNEL_C = $(wildcard ./src/*.c)
+FORMAT = ./linker.ld
+REXDIR = ./REX-OS/
 
-KERNEL_A_OBJ = ./kernelWrapper.o
-KERNEL_C_OBJ = ./kernel.o
-FILES = 	   $(KERNEL_A_OBJ) 	   $(KERNEL_C_OBJ)
+BOOT_D = ./REX-OS/boot
+KERN_F = ./REX-OS/boot/kernel
+BOOT_A = ./src/boot.S
 
-execboot: all
-	@qemu-system-x86_64 -drive format=raw,file="./os.bin",index=0,if=floppy,  -m 128M
+CFLAGS = -ffreestanding -Wall -O3 -std=gnu99 -c -I $(K_HEAD)
+LFLAGS = -m elf_i386 -T $(FORMAT)
+
+execboot: REX-OS.iso
+	@qemu-system-i386 	-drive format=raw,file="$^"
 	@make clean
 
-chkboot: all
-	@qemu-system-x86_64 -drive format=raw,file="./os.bin",index=0,if=floppy,  -m 128M
-	@bless 	./os.bin
+chkboot: REX-OS.iso
+	@qemu-system-i386 	-drive format=raw,file="$^"
+	@bless $(KERN_F)
 	@make clean
 
-all: boot.bin kernel.bin
+REX-OS.iso: kernel
+	@grub-mkrescue 		-o $@ $(REXDIR) 			&& 	echo " 		REX ISO UPDATED 		"
 
-	@dd 	if=./boot.bin 				>> ./os.bin
-	@dd 	if=./kernel.bin 			>> ./os.bin
-#	@dd 	if=/dev/zero bs=512 count=8 >> ./os.bin
-	@echo " 	OS BINARY UPDATED "
+kernel: boot.o kernel.o vga.o gdt.o
+	@$(LD) $(LFLAGS) 	-o $@ $^ 					&&	echo " 		KERNEL LINKED 			"
+	@mv $@ $(KERN_F) 								&&	echo " 		REX DIR UPDATED 		"
 
-kernel.bin:
-	@$(AS)	$(KERNEL_A) -o $(KERNEL_A_OBJ) -f elf
-	@echo " 	KERNEL ASSEMBLY FILE PROCESSED "
-	@$(CC)  $(KERNEL_C) -o $(KERNEL_C_OBJ) $(CFLAGS)
-	@echo " 	KERNEL C FILE PROCESSED "
-	
-	@$(LD)  $(FILES) 	-o $@ -Ttext 0x1000 --oformat binary
-	@echo " 	KERNEL LINKED "
+boot.o:
+	@$(AS) $(BOOT_A) 	-o $@ --32 					&&	echo " 		BOOT FILE UPDATED 		"
 
-boot.bin:
-	@$(AS) 	$(BOOT_A) 	-o $@ -f bin
+kernel.o:
+	@$(CC) $(CFLAGS) 	-o $@ $(K_CODE)/kernel.c 	&& 	echo " 		KERNEL C FILE PROCESSED "
 
-	@echo " 	BOOT FILE UPDATED "
+vga.o:
+	@$(CC) $(CFLAGS) 	-o $@ $(K_CODE)/vga.c 		&&	echo " 		VGA C FILE PROCESSED 	"
+
+gdt.o:
+	@$(CC) $(CFLAGS) 	-o $@ $(K_CODE)/gdt.c 		&& 	echo " 		GDT C FILE PROCESSED 	"
 
 clean:
 	@rm -f ./*.bin
 	@rm -f ./*.o
+	@rm -f ./*.iso
+	@clear
