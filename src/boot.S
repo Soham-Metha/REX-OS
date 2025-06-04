@@ -26,6 +26,12 @@ haltKernel:
 gdtFlush:
     MOVL    4(%esp),    %eax
     LGDT    (%eax)
+    MOVL    %eax,       0x10
+    MOVL    %DS,        %eax
+    MOVL    %ES,        %eax
+    MOVL    %FS,        %eax
+    MOVL    %GS,        %eax
+    MOVL    %SS,        %eax
 
 .section .bss
     .lcomm  stackSpace,     8192
