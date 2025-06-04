@@ -25,14 +25,3 @@ extern void kernelMain() {
         
     }
 }
-
-void test(char* vga){
-
-    char* str = " Dont print thissssssssssss!";
-    while (*str) {
-        *vga = *str | 0x0F00;
-        str++;
-        vga+=2;
-    }
-
-}
