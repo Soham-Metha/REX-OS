@@ -4,7 +4,7 @@ export PATH := $(PREFIX)/bin:$(PATH)
 
 
 CC = i686-elf-gcc
-AS = i686-elf-gas
+AS = i686-elf-as
 LD = i686-elf-ld
 
 K_HEAD = ./kern/headers
