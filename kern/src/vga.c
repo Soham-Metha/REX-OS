@@ -45,7 +45,7 @@ void scrollUp()
 
 void print(const char *s)
 {
-    while (*s)
+    while (*(s++))
         switch (*s)
         {
         case '\n':
