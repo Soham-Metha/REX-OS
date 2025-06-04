@@ -14,7 +14,7 @@
 
 start:
     CLI
-    MOVL    $stackTop,      %ESP
+    MOVL    $stackSpace + 8192,      %ESP
     CALL    kernelMain
     HLT
 
