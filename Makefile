@@ -23,6 +23,7 @@ execboot: REX-OS.iso
 	@rm -f ./*.bin
 	@rm -f ./*.o
 	@rm -f ./*.iso
+	@clear
 
 chkboot: REX-OS.iso
 	@qemu-system-i386 	-drive format=raw,file="$^"
@@ -30,6 +31,7 @@ chkboot: REX-OS.iso
 	@rm -f ./*.bin
 	@rm -f ./*.o
 	@rm -f ./*.iso
+	@clear
 
 REX-OS.iso: kernel
 	@grub-mkrescue 		-o $@ $(REXDIR)
