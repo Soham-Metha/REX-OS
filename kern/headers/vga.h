@@ -24,7 +24,8 @@ typedef enum
     COLOR8_WHITE
 } Color;
 
-void setColor(Color, Color);
+void setBG(Color);
+void setFG(Color);
 void print(const char *);
 void clearScreen();
 void newLine();
