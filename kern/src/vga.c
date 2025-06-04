@@ -17,7 +17,7 @@ void clearScreen()
     {
         for (uint16_t x = 0; x < WIDTH; x++)
         {
-            vga[y * WIDTH + x] = ' ' | currentColor;
+            vga[y * WIDTH + x] = currentColor | ' ';
         }
     }
 }
