@@ -1,4 +1,3 @@
-
 CC = gcc
 AS = nasm
 LD = ld
