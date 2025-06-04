@@ -3,7 +3,8 @@
 
 uint16_t col = 0;
 uint16_t row = 0;
-uint16_t *const vga = (uint16_t *const)0xB8000; // uint *const = constant pointer, const uint16_t* = pointer pointing to const value
+uint16_t *const vga =
+    (uint16_t *const)0xB8000; // uint *const = constant pointer, const uint16_t* = pointer pointing to const value
 const uint16_t defaultColor = (COLOR8_BLACK << 12) | (COLOR8_LIGHT_GREY << 8);
 uint16_t currentColor = defaultColor;
 
@@ -69,7 +70,11 @@ void print(const char *s)
     }
 }
 
-void setColor(Color BG, Color FG)
+void setBG(Color col)
 {
-    currentColor = (BG << 12) | (FG << 8);
+    currentColor = ((currentColor & ~(0x0F << 12)) | (((col) & 0x0F) << 12));
+}
+void setFG(Color col)
+{
+    currentColor = ((currentColor & ~(0x0F << 8)) | (((col) & 0x0F) << 8));
 }
