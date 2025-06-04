@@ -13,7 +13,14 @@ extern kernelMain
 
 start:
     CLI
-    MOV ESP, stackSpace
+    MOV     ESP, stackSpace
+    CALL    kernelMain
+    HLT
+
+haltKernel:
+    CLI
+    HLT
+    JMP     haltKernel
 
 section .bss
     RESB    8192
