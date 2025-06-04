@@ -24,14 +24,14 @@ haltKernel:
     JMP     haltKernel
 
 gdtFlush:
-    MOVL    4(%esp),    %eax
-    LGDT    (%eax)
-    MOVW    $0x10,      %ax
-    MOVW    %ax,        %ds
-    MOVW    %ax,        %es
-    MOVW    %ax,        %fs
-    MOVW    %ax,        %gs
-    MOVW    %ax,        %ss
+    MOVL    4(%ESP),    %EAX
+    LGDT    (%EAX)
+    MOVW    $0x10,      %AX
+    MOVW    %AX,        %DS
+    MOVW    %AX,        %ES
+    MOVW    %AX,        %FS
+    MOVW    %AX,        %GS
+    MOVW    %AX,        %SS
     ljmp    $0x08,      $flush
 
 flush:
