@@ -8,3 +8,6 @@
 #define HEIGHT 25
 
 void print(const char *);
+void clearScreen();
+void newLine();
+void scrollUp();
