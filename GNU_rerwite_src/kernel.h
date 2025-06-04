@@ -2,6 +2,6 @@
 #define KENREL_H
 
 void test(char* vga);
-extern void kernel_main();
+extern void kernelMain();
 
 #endif
