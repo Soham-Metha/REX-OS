@@ -1,7 +1,4 @@
-#ifndef KENREL_H
-#define KENREL_H
+#pragma once
 
 void test(char *vga);
 extern void kernelMain();
-
-#endif
