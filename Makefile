@@ -28,7 +28,7 @@ REX-OS.iso: kernel
 	@grub-mkrescue -o $@ $(REXDIR)
 	@echo " 	REX ISO UPDATED "
 
-kernel: boot.o kernel.o vga.c
+kernel: boot.o kernel.o vga.o
 	@$(LD) $(LFLAGS) -o $@ $^
 	@echo " 	KERNEL LINKED "
 
