@@ -7,3 +7,14 @@ section .text
     DD      0x00000000
     ; checksum
     DD      -( 0x1BADB002 + 0x00000000 )
+
+global start
+extern kernelMain
+
+start:
+    CLI
+    MOV ESP, stackSpace
+
+section .bss
+    RESB    8192
+stackSpace:
