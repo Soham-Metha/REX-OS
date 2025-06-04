@@ -9,6 +9,7 @@
     .long   -(0x1BADB002 + 0x00000000)
 
     .globl  start
+    .globl  gdtFlush
     .extern kernelMain
 
 start:
@@ -21,6 +22,10 @@ haltKernel:
     CLI
     HLT
     JMP     haltKernel
+
+gdtFlush:
+    MOVL    4(%esp),    %eax
+    LGDT    (%eax)
 
 .section .bss
     .lcomm  stackSpace,     8192
