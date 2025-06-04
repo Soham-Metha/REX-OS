@@ -1,6 +1,6 @@
 #include "gdt.h";
 
-extern void gdtFlush(addr_t);
+extern void gdtFlush(uint32_t);
 
 Descriptor gdtEntries[5];
 GdtPtr gdtPtr;
