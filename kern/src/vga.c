@@ -21,14 +21,20 @@ void clearScreen()
 void newLine()
 {
     if (line < HEIGHT - 1)
-    {
         line += 1;
-        column = 0;
-    }
+    else
+        scrollUp();
+    column = 0;
 }
 
 void scrollUp()
 {
+    for (uint16_t y = 1; y < HEIGHT; y++)
+        for (uint16_t x = 0; x < WIDTH; x++)
+            vga[(y - 1) * WIDTH + x] = vga[y * WIDTH + x];
+
+    for (uint16_t x = 0; x < WIDTH; x++)
+        vga[(HEIGHT - 1) * WIDTH + x] = currentColor | ' ';
 }
 
 void print(const char *)
