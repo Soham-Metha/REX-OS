@@ -7,6 +7,6 @@ extern void kernelMain()
     initGdt();
     setBG(COLOR8_BLUE);
     setFG(COLOR8_LIGHT_RED);
-    clearScreen();
+    //clearScreen();
     print("Hello, kernel!");
 }
