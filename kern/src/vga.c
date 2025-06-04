@@ -19,7 +19,6 @@ void clearScreen()
 {
     col = 0;
     row = 0;
-    currentColor = defaultColor;
 
     for (uint16_t y = 0; y < HEIGHT; y++)
         for (uint16_t x = 0; x < WIDTH; x++)
