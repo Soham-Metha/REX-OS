@@ -7,4 +7,4 @@
 #define WIDTH 80
 #define HEIGHT 25
 
-void print(const char*);
+void print(const char *);
