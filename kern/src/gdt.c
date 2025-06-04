@@ -16,4 +16,15 @@ void initGdt()
     setGdtEntry(3, 0, 0xFFFFFFFF, 0xFA, 0xCF);
     setGdtEntry(4, 0, 0xFFFFFFFF, 0xF2, 0xCF);
 }
-void setGdtEntry(uint32_t num, uint32_t base, uint32_t limit, uint8_t access, uint8_t flags);
+void setGdtEntry(uint32_t num, uint32_t base, uint32_t limit, uint8_t access, uint8_t flags)
+{
+    gdtEntries[num].base_0_15 = base & 0xFFFF;
+    gdtEntries[num].base_16_23 = (base >> 16) & 0xFF;
+    gdtEntries[num].base_24_31 = (base >> 24) & 0xFF;
+
+    gdtEntries[num].limit_0_15 = limit & 0xFFFF;
+    gdtEntries[num].limit_16_19_flags = (limit >> 16) & 0x0F;
+    gdtEntries[num].limit_16_19_flags |= flags & 0xF0;
+
+    gdtEntries[num].AccessByte = access;
+}
