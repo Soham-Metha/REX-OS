@@ -34,6 +34,7 @@ REX-OS.iso: kernel
 kernel: boot.o kernel.o
 	@$(LD) $(LFLAGS) -o $@ $^
 	@echo " 	KERNEL LINKED "
+
 	@mv $@ $(KERN_F)
 	@echo " 	REX DIR UPDATED "
 
