@@ -1,4 +1,4 @@
-#include "gdt.h";
+#include "gdt.h"
 
 extern void gdtFlush(uint32_t);
 
