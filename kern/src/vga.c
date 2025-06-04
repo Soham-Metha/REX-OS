@@ -67,3 +67,8 @@ void print(const char *s)
         s += 1;
     }
 }
+
+void setColor(Color BG, Color FG)
+{
+    currentColor = (BG << 12) | (FG << 8);
+}
