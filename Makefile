@@ -28,30 +28,23 @@ chkboot: REX-OS.iso
 	@make clean
 
 REX-OS.iso: kernel
-	@grub-mkrescue 		-o $@ $(REXDIR) && 	echo " 	REX ISO UPDATED "
+	@grub-mkrescue 		-o $@ $(REXDIR) 			&& 	echo " 		REX ISO UPDATED 		"
 
 kernel: boot.o kernel.o vga.o gdt.o
-	@$(LD) $(LFLAGS) 	-o $@ $^
-	@echo " 	KERNEL LINKED "
-
-	@mv $@ $(KERN_F)
-	@echo " 	REX DIR UPDATED "
+	@$(LD) $(LFLAGS) 	-o $@ $^ 					&&	echo " 		KERNEL LINKED 			"
+	@mv $@ $(KERN_F) 								&&	echo " 		REX DIR UPDATED 		"
 
 boot.o:
-	@$(AS) $(BOOT_A) 	-o $@ --32
-	@echo " 	BOOT FILE UPDATED "
+	@$(AS) $(BOOT_A) 	-o $@ --32 					&&	echo " 		BOOT FILE UPDATED 		"
 
 kernel.o:
-	@$(CC) $(CFLAGS) 	-o $@ $(K_CODE)/kernel.c
-	@echo " 	KERNEL C FILE PROCESSED "
+	@$(CC) $(CFLAGS) 	-o $@ $(K_CODE)/kernel.c 	&& 	echo " 		KERNEL C FILE PROCESSED "
 
 vga.o:
-	@$(CC) $(CFLAGS) 	-o $@ $(K_CODE)/vga.c
-	@echo " 	VGA C FILE PROCESSED "
+	@$(CC) $(CFLAGS) 	-o $@ $(K_CODE)/vga.c 		&&	echo " 		VGA C FILE PROCESSED 	"
 
 gdt.o:
-	@$(CC) $(CFLAGS) 	-o $@ $(K_CODE)/gdt.c
-	@echo " 	GDT C FILE PROCESSED "
+	@$(CC) $(CFLAGS) 	-o $@ $(K_CODE)/gdt.c 		&& 	echo " 		GDT C FILE PROCESSED 	"
 
 clean:
 	@rm -f ./*.bin
