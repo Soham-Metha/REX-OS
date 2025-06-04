@@ -44,3 +44,4 @@ kernel.o:
 clean:
 	@rm -f ./*.bin
 	@rm -f ./*.o
+	@rm -f ./*.iso
