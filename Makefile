@@ -29,7 +29,7 @@ chkboot: REX-OS.iso
 
 REX-OS.iso: kernel
 	@grub-mkrescue 		-o $@ $(REXDIR)
-	@echo " 	REX ISO UPDATED "
+	                                               	@echo " 	REX ISO UPDATED "
 
 kernel: boot.o kernel.o vga.o gdt.o
 	@$(LD) $(LFLAGS) 	-o $@ $^
