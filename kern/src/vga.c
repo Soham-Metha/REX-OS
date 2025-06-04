@@ -43,6 +43,23 @@ void scrollUp()
         vga[(HEIGHT - 1) * WIDTH + x] = currentColor | ' ';
 }
 
-void print(const char *)
+void print(const char *s)
 {
+    while (*s)
+        switch (*s)
+        {
+        case '\n':
+            return newLine();
+        case '\r':
+            column = 0;
+            return;
+        case '\t':
+            int tabLen = 4 - (column%4);
+            while (tabLen)
+                writeChar(' ');
+            return;
+        default:
+            writeChar(*s);
+            
+        }
 }
