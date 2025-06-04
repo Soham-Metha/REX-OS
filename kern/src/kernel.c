@@ -1,8 +1,10 @@
 #include <kernel.h>
 #include <vga.h>
+#include <gdt.h>
 
 extern void kernelMain()
 {
+    initGdt();
     setBG(COLOR8_BLUE);
     setFG(COLOR8_LIGHT_RED);
     clearScreen();
