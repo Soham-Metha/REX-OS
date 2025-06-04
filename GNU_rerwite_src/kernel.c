@@ -12,7 +12,7 @@ void test2(){
 
 }
 
-extern void kernel_main() {
+extern void kernelMain() {
     
     char* str = "Hello, Kernel!";
     char* vga = (char*)0xB8000;
