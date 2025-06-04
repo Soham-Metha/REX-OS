@@ -16,10 +16,12 @@ KERN_F = ./REX-OS/boot/kernel
 
 execboot: REX-OS.iso
 	@qemu-system-i386 $^
+	@make clean
 
 chkboot: REX-OS.iso
 	@qemu-system-i386 $^
 	@bless $(KERN_F)
+	@make clean
 
 REX-OS.iso: kernel
 	@grub-mkrescue -o $@ $(REXDIR)
