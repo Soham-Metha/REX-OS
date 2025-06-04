@@ -21,18 +21,24 @@ chkboot: REX-OS.iso
 	@qemu-system-i386 $^
 	@bless $(KERN_F)
 
-boot.o:
-	@$(AS) $(BOOT_A) -o $@ -f elf32
-
-kernel.o:
-	@$(CC) $(CFLAGS) -c $(KERN_C) -o $@
+REX-OS.iso: kernel
+	@grub-mkrescue -o $@ $(REXDIR)
+	@echo " 	REX ISO UPDATED "
 
 kernel: boot.o kernel.o
 	@$(LD) $(LFLAGS) -o $@ $^
+	@echo " 	KERNEL LINKED "
 	@mv $@ $(KERN_F)
+	@echo " 	REX DIR UPDATED "
 
-REX-OS.iso: kernel
-	@grub-mkrescue -o $@ $(REXDIR)
+boot.o:
+	@$(AS) $(BOOT_A) -o $@ -f elf32
+	@echo " 	BOOT FILE UPDATED "
+
+kernel.o:
+	@$(CC) $(CFLAGS) -c $(KERN_C) -o $@
+	@echo " 	KERNEL C FILE PROCESSED "
+
 
 clean:
 	@rm -f ./*.bin
