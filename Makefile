@@ -10,9 +10,7 @@ REXDIR = ./REX-OS/
 
 BOOT_D = ./REX-OS/boot
 KERN_F = ./REX-OS/boot/kernel
-
 BOOT_A = ./src/boot.S
-KERN_C = ./kern/src/kernel.c
 
 CFLAGS = -m32 -ffreestanding -Wall -O3 -std=gnu99 -c -I $(K_HEAD)
 LFLAGS = -m elf_i386 -T $(FORMAT)
@@ -30,7 +28,7 @@ REX-OS.iso: kernel
 	@grub-mkrescue -o $@ $(REXDIR)
 	@echo " 	REX ISO UPDATED "
 
-kernel: boot.o kernel.o
+kernel: boot.o kernel.o vga.c
 	@$(LD) $(LFLAGS) -o $@ $^
 	@echo " 	KERNEL LINKED "
 
@@ -42,7 +40,11 @@ boot.o:
 	@echo " 	BOOT FILE UPDATED "
 
 kernel.o:
-	@$(CC) $(CFLAGS) $(KERN_C) -o $@
+	@$(CC) $(CFLAGS) -o $@ $(K_CODE)/kernel.c
+	@echo " 	KERNEL C FILE PROCESSED "
+
+vga.o:
+	@$(CC) $(CFLAGS) -o $@ $(K_CODE)/vga.c
 	@echo " 	KERNEL C FILE PROCESSED "
 
 clean:
