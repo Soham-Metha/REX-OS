@@ -14,7 +14,7 @@ typedef struct gdtPtr
 {
     uint16_t limit;
     unsigned int base;
-} GdtPtr;
+} __attribute__((packed)) GdtPtr;
 
 void initGdt();
 void setGdtEntry(uint32_t, uint32_t, uint32_t, uint8_t, uint8_t);
