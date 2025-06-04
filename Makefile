@@ -1,6 +1,11 @@
-CC = gcc
-AS = as
-LD = ld
+export PREFIX := $(HOME)/opt/cross
+export TARGET := i686-elf
+export PATH := $(PREFIX)/bin:$(PATH)
+
+
+CC = i686-elf-gcc
+AS = i686-elf-gas
+LD = i686-elf-ld
 
 K_HEAD = ./kern/headers
 K_CODE = ./kern/src
