@@ -20,18 +20,12 @@ LFLAGS = -m elf_i386 -T $(FORMAT)
 
 execboot: REX-OS.iso
 	@qemu-system-i386 	-drive format=raw,file="$^"
-	@rm -f ./*.bin
-	@rm -f ./*.o
-	@rm -f ./*.iso
-	@clear
+	@make clean
 
 chkboot: REX-OS.iso
 	@qemu-system-i386 	-drive format=raw,file="$^"
 	@bless $(KERN_F)
-	@rm -f ./*.bin
-	@rm -f ./*.o
-	@rm -f ./*.iso
-	@clear
+	@make clean
 
 REX-OS.iso: kernel
 	@grub-mkrescue 		-o $@ $(REXDIR)
@@ -64,3 +58,4 @@ clean:
 	@rm -f ./*.bin
 	@rm -f ./*.o
 	@rm -f ./*.iso
+	@clear
