@@ -17,6 +17,7 @@ void initGdt()
     setGdtEntry(4, 0, 0xFFFFFFFF, 0xF2, 0xCF);
     gdtFlush(&gdtPtr);
 }
+
 void setGdtEntry(uint32_t num, uint32_t base, uint32_t limit, uint8_t access, uint8_t flags)
 {
     gdtEntries[num].base_0_15 = base & 0xFFFF;
