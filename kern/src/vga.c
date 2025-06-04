@@ -45,7 +45,8 @@ void scrollUp()
 
 void print(const char *s)
 {
-    while (*(s++))
+    while (*s)
+    {
         switch (*s)
         {
         case '\n':
@@ -63,4 +64,6 @@ void print(const char *s)
             writeChar(*s);
             break;
         }
+        s += 1;
+    }
 }
