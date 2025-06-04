@@ -45,7 +45,11 @@ kernel.o:
 
 vga.o:
 	@$(CC) $(CFLAGS) -o $@ $(K_CODE)/vga.c
-	@echo " 	KERNEL C FILE PROCESSED "
+	@echo " 	VGA C FILE PROCESSED "
+
+gdt.o:
+	@$(CC) $(CFLAGS) -o $@ $(K_CODE)/gdt.c
+	@echo " 	GDT C FILE PROCESSED "
 
 clean:
 	@rm -f ./*.bin
