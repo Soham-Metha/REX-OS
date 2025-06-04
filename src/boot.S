@@ -32,9 +32,9 @@ gdtFlush:
     MOVW    %ax,        %fs
     MOVW    %ax,        %gs
     MOVW    %ax,        %ss
-    ljmp    $0x08,      $.gdtFlush
+    ljmp    $0x08,      $flush
 
-.gdtFlush:
+flush:
     RET
 
 .section .bss
