@@ -3,6 +3,6 @@
 
 extern void kernelMain()
 {
-    //char *str = "Hello, Kernel!";
+    clearScreen();
     print("Hello, kernel!");
 }
