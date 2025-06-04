@@ -49,17 +49,18 @@ void print(const char *s)
         switch (*s)
         {
         case '\n':
-            return newLine();
+            newLine();
+            break;
         case '\r':
             column = 0;
-            return;
+            break;
         case '\t':
-            int tabLen = 4 - (column%4);
+            int tabLen = 4 - (column % 4);
             while (tabLen)
                 writeChar(' ');
-            return;
+            break;
         default:
             writeChar(*s);
-            
+            break;
         }
 }
