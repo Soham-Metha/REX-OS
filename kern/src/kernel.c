@@ -1,4 +1,5 @@
 #include <kernel.h>
+#include <vga.h>
 
 extern void kernelMain()
 {
