@@ -1,22 +1,23 @@
 #include "vga.h"
 #include "types.h"
-#define writeChar(ch)                                                                                                  \
-    {                                                                                                                  \
-        if (column == WIDTH)                                                                                           \
-            newLine();                                                                                                 \
-        vga[line * WIDTH + (column++)] = ch | currentColor;                                                            \
-    }
 
-uint16_t *vga = (uint16_t *)0xB8000;
-uint16_t column = 0;
-uint16_t line = 0;
+uint16_t* const vga = (uint16_t *)0xB8000;
+uint16_t col = 0;
+uint16_t row = 0;
 const uint16_t defaultColor = (COLOR8_BLACK << 12) | (COLOR8_LIGHT_GREY << 8);
 uint16_t currentColor = defaultColor;
 
+#define writeChar(ch)                                                                                                  \
+    {                                                                                                                  \
+        if (col == WIDTH)                                                                                           \
+            newLine();                                                                                                 \
+        vga[row * WIDTH + (col++)] = ch | currentColor;                                                            \
+    }
+
 void clearScreen()
 {
-    column = 0;
-    line = 0;
+    col = 0;
+    row = 0;
     currentColor = defaultColor;
 
     for (uint16_t y = 0; y < HEIGHT; y++)
@@ -26,11 +27,11 @@ void clearScreen()
 
 void newLine()
 {
-    if (line < HEIGHT - 1)
-        line += 1;
+    if (row < HEIGHT - 1)
+        row += 1;
     else
         scrollUp();
-    column = 0;
+    col = 0;
 }
 
 void scrollUp()
@@ -53,10 +54,10 @@ void print(const char *s)
             newLine();
             break;
         case '\r':
-            column = 0;
+            col = 0;
             break;
         case '\t':
-            int tabLen = 4 - (column % 4);
+            int tabLen = 4 - (col % 4);
             while (tabLen)
                 writeChar(' ');
             break;
