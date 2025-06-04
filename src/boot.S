@@ -12,7 +12,7 @@ global start
 extern kernelMain
 
 start:
-    LJMP    0x7C00,_start
+    LJMP    0x7C00,$_start
 
 _start:
     CLI
