@@ -1,5 +1,5 @@
 CC = gcc
-AS = nasm
+AS = as
 LD = ld
 
 K_HEAD = ./kern/headers
