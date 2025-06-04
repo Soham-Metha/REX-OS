@@ -14,7 +14,8 @@
 
 start:
     CLI
-    MOVL    $stackSpace + 8192,      %ESP
+    MOVL    $stackSpace + 8192,      %ESP 
+    /* stack extends downwards, so ESP should be 'after' the space allocated */
     CALL    kernelMain
     HLT
 
