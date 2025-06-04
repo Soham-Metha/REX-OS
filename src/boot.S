@@ -14,8 +14,7 @@
 
 start:
     CLI
-    MOVL    $stackSpace + 8192,      %ESP 
-    /* stack extends downwards, so ESP should be 'after' the space allocated */
+    MOVL    $stackSpace + 8192,     %ESP
     CALL    kernelMain
     HLT
 
@@ -25,15 +24,15 @@ haltKernel:
     JMP     haltKernel
 
 gdtFlush:
-    MOVL    4(%ESP),    %EAX
+    MOVL    4(%ESP),                %EAX
     LGDT    (%EAX)
-    MOVW    $0x10,      %AX
-    MOVW    %AX,        %DS
-    MOVW    %AX,        %ES
-    MOVW    %AX,        %FS
-    MOVW    %AX,        %GS
-    MOVW    %AX,        %SS
-    LJMP    $0x08,      $flush /* LJMP to update the CS */
+    MOVW    $0x10,                  %AX
+    MOVW    %AX,                    %DS
+    MOVW    %AX,                    %ES
+    MOVW    %AX,                    %FS
+    MOVW    %AX,                    %GS
+    MOVW    %AX,                    %SS
+    LJMP    $0x08,                  $flush      /* LJMP to update the CS */
 
 flush:
     RET
