@@ -27,3 +27,4 @@ void print(const char *);
 void clearScreen();
 void newLine();
 void scrollUp();
+void setColor(Color BG, Color FG);
