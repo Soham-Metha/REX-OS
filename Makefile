@@ -7,10 +7,11 @@ K_HEAD = ./kern/headers
 K_CODE = ./kern/src
 
 FORMAT = ./linker.ld
-
 REXDIR = ./REX-OS/
+
 BOOT_D = ./REX-OS/boot
 KERN_F = ./REX-OS/boot/kernel
+
 BOOT_A = ./src/boot.S
 KERN_C = $(wildcard $(K_CODE)/*.c)
 
