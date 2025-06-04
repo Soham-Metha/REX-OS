@@ -39,4 +39,3 @@ flush:
 
 .section .bss
     .lcomm  stackSpace,     8192
-stackTop:
