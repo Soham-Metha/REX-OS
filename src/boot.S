@@ -26,12 +26,15 @@ haltKernel:
 gdtFlush:
     MOVL    4(%esp),    %eax
     LGDT    (%eax)
-    MOVL    %eax,       0x10
-    MOVL    %DS,        %eax
-    MOVL    %ES,        %eax
-    MOVL    %FS,        %eax
-    MOVL    %GS,        %eax
-    MOVL    %SS,        %eax
+    MOVW    $0x10,      %ax
+    MOVW    %ax,        %ds
+    MOVW    %ax,        %es
+    MOVW    %ax,        %fs
+    MOVW    %ax,        %gs
+    MOVW    %ax,        %ss
+    ljmp    $0x08,      $.gdtFlush
+
+.gdtFlush:
     RET
 
 .section .bss
