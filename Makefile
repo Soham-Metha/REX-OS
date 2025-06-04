@@ -19,7 +19,7 @@ CFLAGS = -ffreestanding -Wall -O3 -std=gnu99 -c -I $(K_HEAD)
 LFLAGS = -m elf_i386 -T $(FORMAT)
 
 execboot: REX-OS.iso
-	@qemu-system-i386 $^  -drive format=raw
+	@qemu-system-i386  -drive format=raw,file="$^"
 	@make clean
 
 chkboot: REX-OS.iso
