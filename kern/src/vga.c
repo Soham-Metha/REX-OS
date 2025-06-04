@@ -1,5 +1,11 @@
 #include "vga.h"
 #include "types.h"
+#define writeChar(ch)                                                                                                  \
+    {                                                                                                                  \
+        if (column == WIDTH)                                                                                           \
+            newLine() \
+        vga[line*WIDTH+column++] = ch \
+    }
 
 uint16_t *vga = (uint16_t *)0xB8000;
 uint16_t column = 0;
