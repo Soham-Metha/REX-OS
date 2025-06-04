@@ -1,7 +1,11 @@
 #pragma once
 #include "types.h"
 
-typedef enum {
+#define WIDTH 80
+#define HEIGHT 25
+
+typedef enum
+{
     COLOR8_BLACK,
     COLOR8_BLUE,
     COLOR8_GREEN,
@@ -20,11 +24,8 @@ typedef enum {
     COLOR8_WHITE
 } Color;
 
-#define WIDTH 80
-#define HEIGHT 25
-
+void setColor(Color, Color);
 void print(const char *);
 void clearScreen();
 void newLine();
 void scrollUp();
-void setColor(Color BG, Color FG);
