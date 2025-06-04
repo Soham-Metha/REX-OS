@@ -41,7 +41,6 @@ kernel.o:
 	@$(CC) $(CFLAGS) -c $(KERN_C) -o $@
 	@echo " 	KERNEL C FILE PROCESSED "
 
-
 clean:
 	@rm -f ./*.bin
 	@rm -f ./*.o
