@@ -1,7 +1,5 @@
-export PREFIX := $(HOME)/opt/cross
-export TARGET := i686-elf
+export PREFIX := ./libs/cross
 export PATH := $(PREFIX)/bin:$(PATH)
-
 
 CC = i686-elf-gcc
 AS = i686-elf-as
@@ -17,7 +15,7 @@ BOOT_D = ./REX-OS/boot
 KERN_F = ./REX-OS/boot/kernel
 BOOT_A = ./src/boot.S
 
-CFLAGS = -m32 -ffreestanding -Wall -O3 -std=gnu99 -c -I $(K_HEAD)
+CFLAGS = -ffreestanding -Wall -O3 -std=gnu99 -c -I $(K_HEAD)
 LFLAGS = -m elf_i386 -T $(FORMAT)
 
 execboot: REX-OS.iso
