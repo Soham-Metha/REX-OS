@@ -4,7 +4,7 @@
     {                                                                                                                  \
         if (column == WIDTH)                                                                                           \
             newLine();                                                                                                 \
-        vga[line * WIDTH + column++] = ch                                                                              \
+        vga[line * WIDTH + (column++)] = ch | currentColor;                                                            \
     }
 
 uint16_t *vga = (uint16_t *)0xB8000;
