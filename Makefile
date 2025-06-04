@@ -36,7 +36,7 @@ kernel: boot.o kernel.o vga.o
 	@echo " 	REX DIR UPDATED "
 
 boot.o:
-	@$(AS) $(BOOT_A) -o $@ -f elf32
+	@$(AS) $(BOOT_A) -o $@ --32
 	@echo " 	BOOT FILE UPDATED "
 
 kernel.o:

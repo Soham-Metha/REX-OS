@@ -3,7 +3,7 @@
 
 uint16_t col = 0;
 uint16_t row = 0;
-uint16_t *const vga =
+volatile uint16_t *const vga =
     (uint16_t *const)0xB8000; // uint *const = constant pointer, const uint16_t* = pointer pointing to const value
 const uint16_t defaultColor = (COLOR8_BLACK << 12) | (COLOR8_LIGHT_GREY << 8);
 uint16_t currentColor = defaultColor;
