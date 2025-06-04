@@ -10,7 +10,7 @@
 uint16_t *vga = (uint16_t *)0xB8000;
 uint16_t column = 0;
 uint16_t line = 0;
-const uint16_t defaultColor = (COLOR8_BLACK << 8) | (COLOR8_LIGHT_GREY << 12);
+const uint16_t defaultColor = (COLOR8_BLACK << 12) | (COLOR8_LIGHT_GREY << 8);
 uint16_t currentColor = defaultColor;
 
 void clearScreen()
