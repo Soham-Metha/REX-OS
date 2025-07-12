@@ -5,8 +5,8 @@ CC = i686-elf-gcc
 AS = i686-elf-as
 LD = i686-elf-ld
 
-K_HEAD = ./kern/headers
-K_CODE = ./kern/src
+K_HEAD = ./include/kern
+K_CODE = ./src/kern
 
 FORMAT = ./linker.ld
 REXDIR = ./REX-OS/
