@@ -1,4 +1,4 @@
-export PREFIX := ./libs/cross
+export PREFIX := ./tools/cross
 export PATH := $(PREFIX)/bin:$(PATH)
 
 CC = i686-elf-gcc
