@@ -1,7 +1,6 @@
 #include "types.h"
 
-typedef struct descriptor
-{
+typedef struct descriptor {
     uint16_t limit_00_15;
     uint16_t base_00_15;
     uint8_t  base_16_23;
@@ -10,10 +9,9 @@ typedef struct descriptor
     uint8_t  base_24_31;
 } __attribute__((packed)) Descriptor;
 
-typedef struct gdtPtr
-{
+typedef struct gdtPtr {
     uint16_t limit;
-    unsigned int base;
+    uint32_t base;
 } __attribute__((packed)) GdtPtr;
 
 void initGdt();

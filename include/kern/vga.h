@@ -4,8 +4,7 @@
 #define WIDTH 80
 #define HEIGHT 25
 
-typedef enum
-{
+typedef enum {
     COLOR8_BLACK,
     COLOR8_BLUE,
     COLOR8_GREEN,
@@ -26,7 +25,7 @@ typedef enum
 
 void setBG(Color);
 void setFG(Color);
-void print(const char *);
+void print(const char*);
 void clearScreen();
 void newLine();
 void scrollUp();

@@ -1,6 +1,6 @@
+#include <gdt.h>
 #include <kernel.h>
 #include <vga.h>
-#include <gdt.h>
 
 extern void kernelMain()
 {
